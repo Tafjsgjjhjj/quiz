@@ -70,6 +70,16 @@
   #resetBtn {
     background: #e74c3c;
   }
+   footer {
+  position: fixed;   
+  bottom: 0;         
+  left: 0;           
+  width: 100%;      
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
 </style>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -124,8 +134,9 @@
 <div id="score">Score: 0</div>
 <div id="finishMsg"></div>
 <button id="resetBtn">Reset Quiz</button>
-
+<footer><b>Ranido, Ampo, Teoxon</b></footer>
 <script>
+ 
 let currentQ = 1;
 let score = 0;
 
@@ -170,4 +181,5 @@ $("#resetBtn").click(function() {
 </script>
 
 </body>
+
 </html>
