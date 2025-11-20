@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Blur Quiz</title>
+
+<style>
+  body {
+    font-family: Arial;
+    background: #eef2f3;
+    padding: 30px;
+  }
+
+  .question-box {
+    background: white;
+    padding: 20px;
+    width: 350px;
+    margin: 25px auto;
+    border-radius: 12px;
+    transition: filter 0.3s, transform 0.3s, opacity 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .blurred {
+    filter: blur(4px);
+    opacity: 0.5;
+    transform: scale(0.97);
+  }
+
+  .active-question {
+    opacity: 1;
+    filter: none;
+    transform: scale(1);
+  }
+
+  #score {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  #finishMsg {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 25px;
+    color: #008000;
+    display: none;
+  }
+
+  button {
+    margin: 12px auto 0 auto;
+    padding: 12px;
+    width: 100px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    background: #008cba;
+    color: white;
+    transition: 0.2s;
+    display: block;
+  }
+
+  button:hover {
+    transform: scale(1.04);
+    background: #0075a3;
+  }
+
+  #resetBtn {
+    background: #e74c3c;
+  }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+
+<div id="questions">
+
+  <!-- Q1 -->
+  <div class="question-box" data-q="1">
+    <h3>Question 1</h3>
+    <p>Which jQuery method hides an element?</p>
+    <button class="answer" data-correct="yes">.hide()</button>
+    <button class="answer" data-correct="no">.show()</button>
+  </div>
+
+  <!-- Q2 -->
+  <div class="question-box" data-q="2">
+    <h3>Question 2</h3>
+    <p>Which keyword declares a constant in JavaScript?</p>
+    <button class="answer" data-correct="yes">const</button>
+    <button class="answer" data-correct="no">var</button>
+  </div>
+
+  <!-- Q3 -->
+  <div class="question-box" data-q="3">
+    <h3>Question 3</h3>
+    <p>Which jQuery selector targets all &lt;div&gt; elements?</p>
+    <button class="answer" data-correct="yes">$(&quot;div&quot;)</button>
+    <button class="answer" data-correct="no">$(".div")</button>
+  </div>
+
+  <!-- Q4 -->
+  <div class="question-box" data-q="4">
+    <h3>Question 4</h3>
+    <p>Which JavaScript function converts a JSON string into an object?</p>
+    <button class="answer" data-correct="no">JSON.stringify()</button>
+    <button class="answer" data-correct="yes">JSON.parse()</button>
+  </div>
+
+  <!-- Q5 -->
+  <div class="question-box" data-q="5">
+    <h3>Question 5</h3>
+    <p>Which jQuery method attaches a click event?</p>
+    <button class="answer" data-correct="no">.hover()</button>
+    <button class="answer" data-correct="yes">.click()</button>
+  </div>
+
+</div>
+
+<div id="score">Score: 0</div>
+<div id="finishMsg"></div>
+<button id="resetBtn">Reset Quiz</button>
+
+<script>
+let currentQ = 1;
+let score = 0;
+
+// Set first active
+setActiveQuestion(currentQ);
+
+function setActiveQuestion(qNum) {
+  $(".question-box").each(function () {
+    if ($(this).data("q") === qNum) {
+      $(this).removeClass("blurred").addClass("active-question");
+    } else {
+      $(this).removeClass("active-question").addClass("blurred");
+    }
+  });
+}
+
+// Clicking an answer
+$(".answer").click(function () {
+  if ($(this).data("correct") === "yes") {
+    score++;
+  }
+  $("#score").text("Score: " + score);
+
+  currentQ++;
+
+  if ($('[data-q="' + currentQ + '"]').length) {
+    setActiveQuestion(currentQ);
+  } else {
+    $(".question-box").addClass("blurred");
+    $("#finishMsg").text("Quiz Finished! Your Score: " + score + "/5").fadeIn(300);
+  }
+});
+
+// Reset button functionality
+$("#resetBtn").click(function() {
+  score = 0;
+  currentQ = 1;
+  $("#score").text("Score: " + score);
+  $("#finishMsg").hide();
+  setActiveQuestion(currentQ);
+});
+</script>
+
+</body>
+</html>
