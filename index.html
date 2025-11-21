@@ -89,7 +89,7 @@
 
 <div id="questions">
 
-  <!-- Q1 -->
+
   <div class="question-box" data-q="1">
     <h3>Question 1</h3>
     <p>Which jQuery method hides an element?</p>
@@ -97,7 +97,6 @@
     <button class="answer" data-correct="no">.show()</button>
   </div>
 
-  <!-- Q2 -->
   <div class="question-box" data-q="2">
     <h3>Question 2</h3>
     <p>Which keyword declares a constant in JavaScript?</p>
@@ -105,7 +104,6 @@
     <button class="answer" data-correct="no">var</button>
   </div>
 
-  <!-- Q3 -->
   <div class="question-box" data-q="3">
     <h3>Question 3</h3>
     <p>Which jQuery selector targets all &lt;div&gt; elements?</p>
@@ -113,7 +111,6 @@
     <button class="answer" data-correct="no">$(".div")</button>
   </div>
 
-  <!-- Q4 -->
   <div class="question-box" data-q="4">
     <h3>Question 4</h3>
     <p>Which JavaScript function converts a JSON string into an object?</p>
@@ -121,7 +118,6 @@
     <button class="answer" data-correct="yes">JSON.parse()</button>
   </div>
 
-  <!-- Q5 -->
   <div class="question-box" data-q="5">
     <h3>Question 5</h3>
     <p>Which jQuery method attaches a click event?</p>
@@ -140,7 +136,7 @@
 let currentQ = 1;
 let score = 0;
 
-// Set first active
+
 setActiveQuestion(currentQ);
 
 function setActiveQuestion(qNum) {
@@ -153,7 +149,7 @@ function setActiveQuestion(qNum) {
   });
 }
 
-// Clicking an answer
+
 $(".answer").click(function () {
   if ($(this).data("correct") === "yes") {
     score++;
@@ -170,7 +166,7 @@ $(".answer").click(function () {
   }
 });
 
-// Reset button functionality
+
 $("#resetBtn").click(function() {
   score = 0;
   currentQ = 1;
@@ -183,3 +179,4 @@ $("#resetBtn").click(function() {
 </body>
 
 </html>
+
